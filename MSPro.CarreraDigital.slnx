@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/ConsoleApp/ConsoleApp.csproj" Id="52bec163-76e9-4541-b037-0527990b5a1c" />
+  <Project Path="src/MSPro.CarreraDigital.USB/MSPro.CarreraDigital.USB.csproj" />
+</Solution>
