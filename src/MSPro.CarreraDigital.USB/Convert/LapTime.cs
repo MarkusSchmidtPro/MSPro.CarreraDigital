@@ -76,7 +76,7 @@ public class LapTime
     public int SensorGroup { get; private init; }
     public TimeSpan Timer { get; private set; }
 
-
+    
     public int CarNo { get; private init; }
     public bool IsGhostCar => CarNo == 7;
     public bool IsPaceCar => CarNo == 8;

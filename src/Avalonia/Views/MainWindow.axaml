@@ -7,14 +7,56 @@
         x:Class="MyMvvmApp.Views.MainWindow"
         x:DataType="vm:MainViewModel"
         Icon="/Assets/147216.png"
+        Width="500" Height="300"
         Title="MyMvvmApp">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainViewModel/>
+        <vm:MainViewModel />
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <StackPanel Margin="8" Spacing="8">
+        <StackPanel Margin="8" Spacing="8"
+                    Orientation="Horizontal" HorizontalAlignment="Left">
 
+            <TextBlock Text="Serial Port:" VerticalAlignment="Center" />
+
+            <ComboBox ItemsSource="{Binding AvailablePorts}"
+                      SelectedItem="{Binding SelectedPort}"
+                      PlaceholderText="Open Port..." VerticalAlignment="Center" />
+
+            <TextBlock Text="CU-Version" VerticalAlignment="Center" />
+            <TextBlock Text="{Binding CuVersion}" VerticalAlignment="Center" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Margin="8" Spacing="8"
+                        Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock Text="{Binding LapTime0}" />
+                <TextBlock Text="{Binding LapCount0}" />
+            </StackPanel>
+            <StackPanel Margin="8" Spacing="8"
+                        Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock Text="{Binding LapTime1}" />
+				<TextBlock Text="{Binding LapCount1}" />
+            </StackPanel>
+            <StackPanel Margin="8" Spacing="8"
+                        Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock Text="{Binding LapTime2}" />
+				<TextBlock Text="{Binding LapCount2}" />
+            </StackPanel>
+            <StackPanel Margin="8" Spacing="8"
+                        Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock Text="{Binding LapTime3}" />
+				<TextBlock Text="{Binding LapCount3}" />
+            </StackPanel>
+        </StackPanel>
+
+
+        <TextBlock Margin="8" 
+                   Text="{Binding ErrorMessage}"
+                   IsVisible="{Binding ErrorMessage, Converter={x:Static ObjectConverters.IsNotNull}}" />
+
+    </StackPanel>
 </Window>

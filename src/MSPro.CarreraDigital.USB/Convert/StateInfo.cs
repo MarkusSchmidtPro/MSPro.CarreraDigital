@@ -22,12 +22,10 @@
 /// </remarks>
 public class StateInfo
 {
-    private const int CAR_COUNT = 8;
-
     /// <summary>
     ///     Gets the collection of cars managed by this instance.
     /// </summary>
-    public Car[] Cars { get; } = new Car[CAR_COUNT];
+    public Car[] Cars { get; } = new Car[ControlUnitCore.CAR_COUNT];
 
     /// <summary>
     ///     Gets the start lights controller for the current session.
@@ -79,7 +77,7 @@ public class StateInfo
             $F bedeutet der Tang des Fahrzeuges ist voll - $0 er ist leer.
             Die Tankstände werden in der Reihenfolge der Fahrzeug Ids übertragen.*/
 
-        for (var i = 0; i < CAR_COUNT; i++)
+        for (var i = 0; i < ControlUnitCore.CAR_COUNT; i++)
         {
             result.Cars[i] = new Car(i)
             {
@@ -93,11 +91,11 @@ public class StateInfo
             Es kann sein, dass es sich um die Tankstände für Ghost- und Pacecar handelt,
             oder sie dienen einem Zweck, der sich mir noch nicht offenbart hat.*/
 
-        result.StartLights = new CStartLights(rawData[1 + CAR_COUNT]);
-        result.CircuitSettings = new CCircuitSettings(rawData[1 + CAR_COUNT + 1])
+        result.StartLights = new CStartLights(rawData[1 + ControlUnitCore.CAR_COUNT]);
+        result.CircuitSettings = new CCircuitSettings(rawData[1 + ControlUnitCore.CAR_COUNT + 1])
         {
             /*  Das letzte Daten-Zeichen (A) ist entweder 6 oder 8,
-                je nachdem ob der Position Tower 6 oder 8 Fahrzeuge anzeigen soll. */ CarsOnTower = rawData[1 + CAR_COUNT + 3] == '6' ? 6 : 8
+                je nachdem ob der Position Tower 6 oder 8 Fahrzeuge anzeigen soll. */ CarsOnTower = rawData[1 + ControlUnitCore.CAR_COUNT + 3] == '6' ? 6 : 8
         };
 
         /*
@@ -106,8 +104,8 @@ public class StateInfo
          * so befindet sich das Fahrzeug in einer Pitlane mit Pitlane Adapter und kann tanken.
          * D.h. nicht das es tankt, nur dass es tanken kann.
          */
-        uint b = ControlUnitCore.ToBinary(rawData[(1 + CAR_COUNT + 2)..], 1);
-        for (int carId = CAR_COUNT - 1; carId >= 0; carId--)
+        uint b = ControlUnitCore.ToBinary(rawData[(1 + ControlUnitCore.CAR_COUNT + 2)..], 1);
+        for (int carId = ControlUnitCore.CAR_COUNT - 1; carId >= 0; carId--)
         {
             // Shift 1 to the left by 'i' places and check if that bit is set
             result.Cars[carId].InPitLane = (b & (1 << carId)) != 0;
