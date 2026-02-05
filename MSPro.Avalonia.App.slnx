@@ -1,0 +1,4 @@
+﻿<Solution>
+  <Project Path="src/Avalonia/MyMvvmApp.csproj"/>
+  <Project Path="src/MSPro.CarreraDigital.USB/MSPro.CarreraDigital.USB.csproj" />
+</Solution>
