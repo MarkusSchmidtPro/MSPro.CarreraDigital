@@ -1,5 +1,5 @@
 # Carrera Digital
-A demo project for connecting a Carrera Digital to a Windows/Linux PC via USB.
+A demo project for connecting a **Carrera Digital** to a Windows/Linux PC **via USB** using **.NET** and **C#**.
 
 # Overview
 
